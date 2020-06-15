@@ -16,10 +16,48 @@ buildscript {
   }
 }
 
+plugins {
+  id "io.gitlab.arturbosch.detekt" version "1.7.3"
+  id "com.dorongold.task-tree" version "1.5"
+}
+
 allprojects {
   repositories {
     google()
     jcenter()
+    maven { url "https://plugins.gradle.org/m2/" }
+  }
+}
+
+subprojects {
+  apply plugin: 'io.gitlab.arturbosch.detekt'
+
+  detekt {
+    toolVersion = "1.7.3"
+    parallel = true   // Builds the AST in parallel. Rules are always executed in parallel. Can lead to speedups in larger projects. `false` by default.
+    config = files("${project.rootDir}/config/detekt/detekt.yml")  // Define the detekt configuration(s) you want to use. Defaults to the default detekt configuration.
+    //baseline = file("path/to/baseline.xml")   // Specifying a baseline file. All findings stored in this file in subsequent runs of detekt.
+    disableDefaultRuleSets = false    // Disables all default detekt rulesets and will only run detekt with custom rules defined in plugins passed in with `detektPlugins` configuration. `false` by default.
+    debug = false  // Adds debug output during task execution. `false` by default.
+    ignoreFailures = false   // If set to `true` the build does not fail when the maxIssues count was reached. Defaults to `false`.
+    reports {
+      xml {
+        enabled = false
+        destination = file("build/reports/detekt/detekt.xml")
+      }
+      html {
+        enabled = true
+        destination = file("build/reports/detekt/detekt.html")
+      }
+      txt {
+        enabled = false
+        destination = file("build/reports/detekt/detekt.txt")
+      }
+      custom {
+        reportId = "CustomJsonReport"
+        destination = file("build/reports/detekt/detekt.json")
+      }
+    }
   }
 }
 
