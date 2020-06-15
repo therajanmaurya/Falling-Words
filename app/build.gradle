@@ -1,37 +1,102 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-  compileSdkVersion 29
-  buildToolsVersion "29.0.3"
+    compileSdkVersion DefaultConfig.compileSdkVersion
+    buildToolsVersion DefaultConfig.buildToolsVersion
 
-  defaultConfig {
-    applicationId "com.therajanmaurya.fallingwords"
-    minSdkVersion 19
-    targetSdkVersion 29
-    versionCode 1
-    versionName "1.0"
+    defaultConfig {
+        applicationId "com.therajanmaurya.fallingwords"
+        minSdkVersion DefaultConfig.minSdkVersion
+        targetSdkVersion DefaultConfig.targetSdkVersion
+        versionCode App.versionCode
+        versionName App.versionName
 
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-  }
-
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-  }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled !project.hasProperty('android.injected.invoked.from.ide')
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    sourceSets {
+        androidTest.java.srcDirs += "src/test-common/java"
+        test.java.srcDirs += "src/test-common/java"
+    }
+
+    lintOptions {
+        lintConfig rootProject.file('lint.xml')
+    }
 }
 
 dependencies {
-  implementation fileTree(dir: "libs", include: ["*.jar"])
-  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation 'androidx.core:core-ktx:1.1.0'
-  implementation 'androidx.appcompat:appcompat:1.1.0'
-  implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-  testImplementation 'junit:junit:4.12'
-  androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-  androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation Kotlin.stdlib
+    implementation AndroidX.appCompat
+    implementation AndroidX.recyclerview
+    implementation AndroidX.cardView
+    implementation AndroidX.material
+    implementation AndroidX.coreKtx
+    implementation AndroidX.transition
+    implementation Fragment.testing
+    implementation Navigation.fragment_ktx
+    implementation LifeCycle.livedata_ktx
+    implementation LifeCycle.runtime
+    implementation LifeCycle.java8
+    implementation Square.runtime
+    implementation Square.gson
+    implementation Glide.runtime
 
+    implementation Dagger.runtime
+    implementation Dagger.android
+    implementation Dagger.android_support
+    implementation AndroidX.constraintLayout
+
+    implementation AndroidX.timber
+
+    kapt Dagger.android_support_compiler
+    kapt Dagger.compiler
+    kapt LifeCycle.compiler
+
+    testImplementation Testing.junit
+    testImplementation Testing.mock_web_server
+    testImplementation ArchCore.testing
+    testImplementation Mockito.core
+
+    androidTestImplementation Atsl.core
+    androidTestImplementation Atsl.extJunit
+    androidTestImplementation Atsl.runner
+    androidTestImplementation Atsl.rules
+
+    androidTestImplementation AndroidX.appCompat
+    androidTestImplementation AndroidX.recyclerview
+    androidTestImplementation AndroidX.cardView
+    androidTestImplementation AndroidX.material
+
+    androidTestImplementation Espresso.core
+    androidTestImplementation Espresso.contrib
+
+    androidTestImplementation ArchCore.testing
+    androidTestImplementation Mockito.core
+    androidTestImplementation Mockito.android
 }
