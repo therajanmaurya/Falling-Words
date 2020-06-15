@@ -119,7 +119,6 @@ object Square {
     const val loggingInterceptor =
         "com.squareup.okhttp3:logging-interceptor:${Versions.loggingInterceptor}"
     const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.loggingInterceptor}"
-    const val runtime = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val mock = "com.squareup.retrofit2:retrofit-mock:${Versions.retrofit}"
 }

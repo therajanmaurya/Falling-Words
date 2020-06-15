@@ -51,6 +51,9 @@ android {
 }
 
 dependencies {
+
+    implementation project(Modules.core)
+
     implementation Kotlin.stdlib
     implementation AndroidX.appCompat
     implementation AndroidX.recyclerview
@@ -63,8 +66,6 @@ dependencies {
     implementation LifeCycle.livedata_ktx
     implementation LifeCycle.runtime
     implementation LifeCycle.java8
-    implementation Square.runtime
-    implementation Square.gson
     implementation Glide.runtime
 
     implementation Dagger.runtime
