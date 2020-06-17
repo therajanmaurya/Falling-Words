@@ -39,6 +39,10 @@ class ScoreViewFragment : Fragment(), Injectable {
         tvWrong.text = params.wrongAnswers
         tvNoAnswer.text = params.unAnswered
 
-
+        ScoreViewAdapter(activity!!).apply {
+            rvAnswers.setHasFixedSize(true)
+            rvAnswers.adapter = this
+            this.submitList(params.words)
+        }
     }
 }

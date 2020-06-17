@@ -62,6 +62,8 @@ class MainFragment : Fragment(), Injectable {
         mainViewModel.wordApiResult.observe(activity!!, Observer {
             if (it != null && it.isNotEmpty()) {
                 pbWord.visibility = View.GONE
+                btnRight.visibility = View.VISIBLE
+                tvFallingWord.visibility = View.VISIBLE
                 mainViewModel.buildSuggestionList()
                 tbTitle.text = mainViewModel.currentQuestion.textEng
                 tvFallingWord.text = mainViewModel.currentSuggestion
@@ -76,7 +78,7 @@ class MainFragment : Fragment(), Injectable {
                 mainViewModel.addAttemptedQuestion(1)
             } else {
                 ++mainViewModel.wrongAnswerCount
-                mainViewModel.addAttemptedQuestion(1, tvFallingWord.text.toString())
+                mainViewModel.addAttemptedQuestion(-1, tvFallingWord.text.toString())
             }
             setScore()
             moveToNextQuestion()

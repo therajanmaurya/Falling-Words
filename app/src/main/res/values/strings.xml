@@ -10,4 +10,6 @@
     <string name="right_answers">Right Answers</string>
     <string name="play_again">Play Again</string>
     <string name="unanswered">Unanswered</string>
+    <string name="answer">Answer</string>
+    <string name="answers">Answers</string>
 </resources>
