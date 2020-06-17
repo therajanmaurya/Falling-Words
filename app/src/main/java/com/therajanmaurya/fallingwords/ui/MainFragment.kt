@@ -31,7 +31,7 @@ class MainFragment : Fragment(), Injectable {
 
     private val mainViewModel: MainViewModel by viewModels { viewModelFactory }
     private var screenHeight = 0f
-    private var valueAnimator = ValueAnimator.ofFloat(-screenHeight, 0f)
+    private var valueAnimator: ValueAnimator? = null
 
     companion object {
         const val DEFAULT_ANIMATION_DURATION = 8000L
@@ -65,6 +65,7 @@ class MainFragment : Fragment(), Injectable {
                 mainViewModel.buildSuggestionList()
                 tbTitle.text = mainViewModel.currentQuestion.textEng
                 tvFallingWord.text = mainViewModel.currentSuggestion
+                valueAnimator?.removeAllUpdateListeners()
                 onStartAnimation()
             }
         })
@@ -93,14 +94,12 @@ class MainFragment : Fragment(), Injectable {
                         onStartAnimation()
                     } else {
                         tvFallingWord.visibility = View.GONE
-                        this.removeAllUpdateListeners()
                         moveToNextQuestion()
-                        onStartAnimation()
                         tvFallingWord.visibility = View.VISIBLE
                     }
                 }
-                // Timber.d("Screen height: " + screenHeight.toString())
-                // Timber.d("Value height: " + value.toString())
+                Timber.d("Screen height: " + screenHeight.toString())
+                Timber.d("Value height: " + value.toString())
             }
             this.interpolator = LinearInterpolator()
             this.duration = DEFAULT_ANIMATION_DURATION
@@ -112,6 +111,8 @@ class MainFragment : Fragment(), Injectable {
         mainViewModel.nextQuestion().apply {
             tbTitle.text = this.textEng
             tvFallingWord.text = mainViewModel.currentSuggestion
+            valueAnimator?.removeAllUpdateListeners()
+            onStartAnimation()
         }
     }
 }
