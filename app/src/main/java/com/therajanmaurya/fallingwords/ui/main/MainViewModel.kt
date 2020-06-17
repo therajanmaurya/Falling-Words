@@ -1,13 +1,11 @@
-package com.therajanmaurya.fallingwords.ui
+package com.therajanmaurya.fallingwords.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.therajanmaurya.core.models.Word
 import com.therajanmaurya.core.repository.FallingWordRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.lang.Exception
 import javax.inject.Inject
 
@@ -19,7 +17,6 @@ class MainViewModel @Inject constructor(private val repository: FallingWordRepos
     var questionIndex = 0
     var suggestionIndex = 0
     var suggestionCount = 1
-    var score = 0
     private var isFromNetwork = false
     var suggestionList: ArrayList<String> = arrayListOf()
     var attemptedQuestions: ArrayList<Word> = arrayListOf()
@@ -88,10 +85,10 @@ class MainViewModel @Inject constructor(private val repository: FallingWordRepos
         viewModelScope.launch {
             try {
                 val words = repository.fetchWords()
-                wordApiResult.postValue(words)
+                wordApiResult.postValue(words.shuffled())
                 isFromNetwork = true
             } catch (exception: Exception) {
-                wordApiResult.value = repository.fetchFromLocalJson()
+                wordApiResult.value = repository.fetchFromLocalJson().shuffled()
                 wordApiResult.postValue(wordApiResult.value)
                 isFromNetwork = false
             }

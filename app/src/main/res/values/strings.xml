@@ -1,8 +1,13 @@
 <resources>
-  <string name="app_name">Falling Words</string>
-  <string name="wrong">Wrong</string>
-  <string name="correct">Correct</string>
-  <string name="is_falling_word_is_the_right_translation">Is falling word the right translation</string>
-  <string name="score">0/0</string>
+    <string name="app_name">Falling Words</string>
+    <string name="wrong">Wrong</string>
+    <string name="correct">Correct</string>
+    <string name="is_falling_word_is_the_right_translation">Is falling word the right translation?</string>
+    <string name="score">Score</string>
     <string name="end">End</string>
+    <string name="no_answers">No Answers</string>
+    <string name="wrong_answers">Wrong Answers</string>
+    <string name="right_answers">Right Answers</string>
+    <string name="play_again">Play Again</string>
+    <string name="unanswered">Unanswered</string>
 </resources>

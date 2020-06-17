@@ -1,7 +1,7 @@
 package com.therajanmaurya.fallingwords.di
 
 import com.therajanmaurya.fallingwords.di.fragmentbuilder.MainBuilderModule
-import com.therajanmaurya.fallingwords.ui.MainActivity
+import com.therajanmaurya.fallingwords.ui.main.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

@@ -1,4 +1,4 @@
-package com.therajanmaurya.fallingwords.ui
+package com.therajanmaurya.fallingwords.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

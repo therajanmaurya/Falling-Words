@@ -5,6 +5,40 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.therajanmaurya.fallingwords.ui.MainFragment"
-        android:label="MainFragment" />
+        android:name="com.therajanmaurya.fallingwords.ui.main.MainFragment"
+        android:label="MainFragment">
+
+        <action
+            android:id="@+id/showScore"
+            app:destination="@id/scoreViewFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/scoreViewFragment"
+        android:name="com.therajanmaurya.fallingwords.ui.scoreview.ScoreViewFragment"
+        android:label="ScoreViewFragment">
+
+        <argument
+            android:name="rightAnswers"
+            app:argType="string" />
+
+        <argument
+            android:name="wrongAnswers"
+            app:argType="string" />
+
+        <argument
+            android:name="unAnswered"
+            app:argType="string" />
+
+        <argument
+            android:name="words"
+            app:argType="com.therajanmaurya.core.models.Words" />
+
+        <action
+            android:id="@+id/showMain"
+            app:destination="@id/mainFragment" />
+
+    </fragment>
+
 </navigation>

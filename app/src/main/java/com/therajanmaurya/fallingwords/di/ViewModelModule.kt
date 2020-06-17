@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.therajanmaurya.core.di.FallingWordViewModelFactory
 import com.therajanmaurya.core.di.ViewModelKey
-import com.therajanmaurya.fallingwords.ui.MainViewModel
+import com.therajanmaurya.fallingwords.ui.main.MainViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

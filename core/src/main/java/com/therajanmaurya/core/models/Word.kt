@@ -1,7 +1,10 @@
 package com.therajanmaurya.core.models
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Word(
 
     @SerializedName("text_eng")
@@ -17,4 +20,7 @@ data class Word(
     @Transient
     @SerializedName("answer")
     var answer: String = ""
-)
+) : Parcelable
+
+@Parcelize
+class Words : ArrayList<Word>(), Parcelable

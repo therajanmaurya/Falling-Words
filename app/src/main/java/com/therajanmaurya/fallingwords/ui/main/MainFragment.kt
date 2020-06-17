@@ -1,27 +1,25 @@
-package com.therajanmaurya.fallingwords.ui
+package com.therajanmaurya.fallingwords.ui.main
 
 import android.animation.ValueAnimator
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
-import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.therajanmaurya.core.di.Injectable
+import com.therajanmaurya.core.models.Words
 import com.therajanmaurya.fallingwords.R
+
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 class MainFragment : Fragment(), Injectable {
@@ -83,6 +81,18 @@ class MainFragment : Fragment(), Injectable {
             setScore()
             moveToNextQuestion()
         }
+
+        tvEnd.setOnClickListener {
+            valueAnimator?.removeAllUpdateListeners()
+            findNavController().navigate(
+                MainFragmentDirections.showScore(
+                    mainViewModel.rightAnswerCount.toString(),
+                    mainViewModel.wrongAnswerCount.toString(),
+                    mainViewModel.unAnsweredCount.toString(),
+                    Words().apply { addAll(mainViewModel.attemptedQuestions) }
+                )
+            )
+        }
     }
 
     private fun onStartAnimation() {
@@ -90,7 +100,7 @@ class MainFragment : Fragment(), Injectable {
             valueAnimator = this
             this.addUpdateListener {
                 val value = it.animatedValue as Float
-                tvFallingWord.translationY = value
+                tvFallingWord?.translationY = value
                 if (value == 0f) {
                     if (mainViewModel.suggestionCount < 4) {
                         tvFallingWord.text = mainViewModel.nextSuggestion()
@@ -105,7 +115,8 @@ class MainFragment : Fragment(), Injectable {
                 }
             }
             this.interpolator = LinearInterpolator()
-            this.duration = DEFAULT_ANIMATION_DURATION
+            this.duration =
+                DEFAULT_ANIMATION_DURATION
             this.start()
         }
     }
@@ -122,6 +133,6 @@ class MainFragment : Fragment(), Injectable {
     private fun setScore() {
         val score = "R ${mainViewModel.rightAnswerCount}" +
                 " | W ${mainViewModel.wrongAnswerCount} | U ${mainViewModel.unAnsweredCount}"
-        tvScore.text = score
+        tvPlayAgain.text = score
     }
 }
