@@ -75,7 +75,6 @@ class MainFragment : Fragment(), Injectable {
                 tvScore.text = (++mainViewModel.score).toString()
             }
             moveToNextQuestion()
-
         }
     }
 
@@ -88,18 +87,12 @@ class MainFragment : Fragment(), Injectable {
                 if (value == 0f) {
                     if (mainViewModel.suggestionCount < 4) {
                         tvFallingWord.text = mainViewModel.nextSuggestion()
-                        Timber.d("Current Suggestion: " + tvFallingWord.text.toString())
-                        Timber.d("Suggestions: " + TextUtils.join(", ", mainViewModel.suggestionList) + "\n")
                         this.removeAllUpdateListeners()
                         onStartAnimation()
                     } else {
-                        tvFallingWord.visibility = View.GONE
                         moveToNextQuestion()
-                        tvFallingWord.visibility = View.VISIBLE
                     }
                 }
-                Timber.d("Screen height: " + screenHeight.toString())
-                Timber.d("Value height: " + value.toString())
             }
             this.interpolator = LinearInterpolator()
             this.duration = DEFAULT_ANIMATION_DURATION
