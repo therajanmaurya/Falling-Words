@@ -3,6 +3,9 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'kotlin-allopen'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+
 android {
     compileSdkVersion DefaultConfig.compileSdkVersion
     buildToolsVersion DefaultConfig.buildToolsVersion
@@ -64,6 +67,8 @@ dependencies {
     implementation Fragment.testing
     implementation Navigation.fragment_ktx
     implementation LifeCycle.livedata_ktx
+    implementation LifeCycle.viewmodel_ktx
+    implementation LifeCycle.lifecycleExtensions
     implementation LifeCycle.runtime
     implementation LifeCycle.java8
     implementation Glide.runtime

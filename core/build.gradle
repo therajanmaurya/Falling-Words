@@ -30,7 +30,8 @@ dependencies {
     implementation Kotlin.stdlib
 
     implementation Square.retrofit
-    implementation Square.gson
+    api Square.gson
+    api AndroidX.coroutines
     implementation Square.moshiConverter
     implementation Square.loggingInterceptor
     implementation Square.okhttp

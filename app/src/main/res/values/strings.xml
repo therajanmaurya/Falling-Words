@@ -1,3 +1,8 @@
 <resources>
   <string name="app_name">Falling Words</string>
+  <string name="wrong">Wrong</string>
+  <string name="correct">Correct</string>
+  <string name="is_falling_word_is_the_right_translation">Is falling word the right translation</string>
+  <string name="score">0/0</string>
+    <string name="end">End</string>
 </resources>

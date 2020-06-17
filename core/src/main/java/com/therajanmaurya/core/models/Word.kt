@@ -8,5 +8,9 @@ data class Word(
     val textEng: String = "",
 
     @SerializedName("text_spa")
-    val textSpaL: String = ""
+    val textSpaL: String = "",
+
+    @Transient
+    @SerializedName("score")
+    val score: Int = 0
 )
