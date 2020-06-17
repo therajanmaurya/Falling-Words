@@ -12,5 +12,9 @@ data class Word(
 
     @Transient
     @SerializedName("score")
-    val score: Int = 0
+    var score: Int = 0,
+
+    @Transient
+    @SerializedName("answer")
+    var answer: String = ""
 )

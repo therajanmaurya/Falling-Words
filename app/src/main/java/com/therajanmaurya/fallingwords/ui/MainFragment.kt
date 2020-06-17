@@ -59,6 +59,8 @@ class MainFragment : Fragment(), Injectable {
 
         pbWord.visibility = View.VISIBLE
 
+        setScore()
+
         mainViewModel.wordApiResult.observe(activity!!, Observer {
             if (it != null && it.isNotEmpty()) {
                 pbWord.visibility = View.GONE
@@ -72,8 +74,13 @@ class MainFragment : Fragment(), Injectable {
 
         btnRight.setOnClickListener {
             if (mainViewModel.currentQuestion.textSpaL == tvFallingWord.text.toString()) {
-                tvScore.text = (++mainViewModel.score).toString()
+                ++mainViewModel.rightAnswerCount
+                mainViewModel.addAttemptedQuestion(1)
+            } else {
+                ++mainViewModel.wrongAnswerCount
+                mainViewModel.addAttemptedQuestion(1, tvFallingWord.text.toString())
             }
+            setScore()
             moveToNextQuestion()
         }
     }
@@ -90,6 +97,9 @@ class MainFragment : Fragment(), Injectable {
                         this.removeAllUpdateListeners()
                         onStartAnimation()
                     } else {
+                        ++mainViewModel.unAnsweredCount
+                        mainViewModel.addAttemptedQuestion(0)
+                        setScore()
                         moveToNextQuestion()
                     }
                 }
@@ -107,5 +117,11 @@ class MainFragment : Fragment(), Injectable {
             valueAnimator?.removeAllUpdateListeners()
             onStartAnimation()
         }
+    }
+
+    private fun setScore() {
+        val score = "R ${mainViewModel.rightAnswerCount}" +
+                " | W ${mainViewModel.wrongAnswerCount} | U ${mainViewModel.unAnsweredCount}"
+        tvScore.text = score
     }
 }

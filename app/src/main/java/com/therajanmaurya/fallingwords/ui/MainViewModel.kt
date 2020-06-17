@@ -22,6 +22,11 @@ class MainViewModel @Inject constructor(private val repository: FallingWordRepos
     var score = 0
     private var isFromNetwork = false
     var suggestionList: ArrayList<String> = arrayListOf()
+    var attemptedQuestions: ArrayList<Word> = arrayListOf()
+
+    var rightAnswerCount = 0
+    var wrongAnswerCount = 0
+    var unAnsweredCount = 0
 
     init {
         viewModelScope.launch { fetchWords() }
@@ -66,6 +71,17 @@ class MainViewModel @Inject constructor(private val repository: FallingWordRepos
         ++suggestionIndex
         ++suggestionCount
         return suggestionList[suggestionIndex]
+    }
+
+    fun addAttemptedQuestion(attempt: Int, answer: String = "") {
+        attemptedQuestions.add(currentQuestion.apply {
+            this.score = attempt
+            if (answer.isEmpty()) {
+                this.answer = textSpaL
+            } else {
+                this.answer = answer
+            }
+        })
     }
 
     suspend fun fetchWords() {
