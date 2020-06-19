@@ -30,13 +30,15 @@ object Versions {
     const val navigation = "2.3.0-alpha01"
     const val timber = "4.7.1"
     const val recyclerview = "1.0.0"
-    const val robolectric = "4.2"
+    const val robolectric = "4.3.1"
     const val rx_android = "2.0.1"
     const val rxjava2 = "2.1.3"
     const val transition = "1.3.0"
     const val truth = "1.0.1"
     const val retrofit = "2.9.0"
     const val loggingInterceptor = "3.12.0"
+    const val coreTesting = "2.1.0"
+    const val mockitoKotlin2 = "2.2.0"
 }
 
 object Kotlin {
@@ -130,6 +132,7 @@ object Mockito {
     const val core = "org.mockito:mockito-core:${Versions.mockito}"
     const val all = "org.mockito:mockito-all:${Versions.mockito_all}"
     const val android = "org.mockito:mockito-android:${Versions.mockito_android}"
+    const val mockitoKotlin2 = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin2}"
 }
 
 object Espresso {
@@ -157,4 +160,5 @@ object Testing {
     const val junit = "junit:junit:${Versions.junit}"
     const val mock_web_server = "com.squareup.okhttp3:mockwebserver:${Versions.mockwebserver}"
     const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
+    const val coreTesting = "android.arch.core:core-testing:${Versions.coreTesting}"
 }

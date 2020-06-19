@@ -23,6 +23,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        androidTest.java.srcDirs += "src/test-common/java"
+        test.java.srcDirs += "src/test-common/java"
+    }
 }
 
 dependencies {
@@ -43,5 +48,30 @@ dependencies {
     kapt Dagger.android_support_compiler
     kapt Dagger.compiler
     kapt LifeCycle.compiler
+
+    testImplementation Testing.junit
+    testImplementation Testing.mock_web_server
+    testImplementation Testing.coroutinesTest
+    testImplementation ArchCore.testing
+    testImplementation Mockito.core
+    testImplementation Testing.coreTesting
+    testImplementation Mockito.mockitoKotlin2
+
+    androidTestImplementation Atsl.core
+    androidTestImplementation Atsl.extJunit
+    androidTestImplementation Atsl.runner
+    androidTestImplementation Atsl.rules
+
+    androidTestImplementation AndroidX.appCompat
+    androidTestImplementation AndroidX.recyclerview
+    androidTestImplementation AndroidX.cardView
+    androidTestImplementation AndroidX.material
+
+    androidTestImplementation Espresso.core
+    androidTestImplementation Espresso.contrib
+
+    androidTestImplementation ArchCore.testing
+    androidTestImplementation Mockito.core
+    androidTestImplementation Mockito.android
 
 }

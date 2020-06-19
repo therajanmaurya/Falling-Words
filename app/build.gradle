@@ -83,8 +83,13 @@ dependencies {
 
     testImplementation Testing.junit
     testImplementation Testing.mock_web_server
+    testImplementation Testing.coroutinesTest
+    testImplementation Testing.coreTesting
+    testImplementation Testing.robolectric
     testImplementation ArchCore.testing
     testImplementation Mockito.core
+    testImplementation Mockito.mockitoKotlin2
+    testImplementation AndroidX.truth
 
     androidTestImplementation Atsl.core
     androidTestImplementation Atsl.extJunit
