@@ -2,6 +2,7 @@ package com.therajanmaurya.core.repository
 
 import com.nhaarman.mockitokotlin2.whenever
 import com.therajanmaurya.core.api.FallingWordService
+import com.therajanmaurya.core.jsonsource.JsonName
 import com.therajanmaurya.core.models.Word
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
@@ -37,5 +38,10 @@ class FallingWordRepositoryTest {
         runBlocking {
             assertEquals(words, fallingWordRepository.fetchWords())
         }
+    }
+
+    @Test
+    fun fetch_from_local_Json() {
+        assertEquals(words, fallingWordRepository.fetchFromLocalJson(JsonName.WORDS_TEST))
     }
 }

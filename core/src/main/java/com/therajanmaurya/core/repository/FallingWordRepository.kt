@@ -14,11 +14,11 @@ open class FallingWordRepository @Inject constructor(private val fallingWordServ
         return try {
             fallingWordService.getWords()
         } catch (e: Exception) {
-            fetchFromLocalJson()
+            fetchFromLocalJson(JsonName.WORDS)
         }
     }
 
-    open fun fetchFromLocalJson(): List<Word> {
-        return JsonDataSource.getWords(JsonName.WORDS)
+    open fun fetchFromLocalJson(jsonName: String): List<Word> {
+        return JsonDataSource.getWords(jsonName)
     }
 }
