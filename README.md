@@ -7,7 +7,7 @@ src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_gener
 
 Falling Words is a samll language learning game, In which player will see the word on screen and on behalf of word, plyer will see falling words. Player can answer correct transation from falling words, After game ends he/she can see the score and can replay. 
 
-## Sweet Designs
+## UI Designs
 <table>
   <tr>
     <td><img src="https://raw.githubusercontent.com/therajanmaurya/Falling-Words/master/art/LoadWords.png"></td>
@@ -15,6 +15,9 @@ Falling Words is a samll language learning game, In which player will see the wo
     <td><img src="https://raw.githubusercontent.com/therajanmaurya/Falling-Words/master/art/Score.png"></td>
   </tr>
 </table>
+
+# APK
+[Debug APK](https://raw.githubusercontent.com/therajanmaurya/Falling-Words/master/app-debug.apk)
 
 # Developers
 
