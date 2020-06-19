@@ -10,10 +10,10 @@ object JsonDataSource {
 
     private val dataFactory = DataFactory()
 
-    fun getWords(): List<Word> {
+    fun getWords(jsonName: String): List<Word> {
         return dataFactory.convertJsonToDataObject(
             object : TypeToken<List<Word>>() {
-            }, JsonName.WORDS
+            }, jsonName
         )
     }
 }

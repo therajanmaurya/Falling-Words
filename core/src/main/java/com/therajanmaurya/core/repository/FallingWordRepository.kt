@@ -3,6 +3,7 @@ package com.therajanmaurya.core.repository
 import com.therajanmaurya.core.api.FallingWordService
 import com.therajanmaurya.core.models.Word
 import com.therajanmaurya.core.jsonsource.JsonDataSource
+import com.therajanmaurya.core.jsonsource.JsonName
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -18,6 +19,6 @@ open class FallingWordRepository @Inject constructor(private val fallingWordServ
     }
 
     open fun fetchFromLocalJson(): List<Word> {
-        return JsonDataSource.getWords()
+        return JsonDataSource.getWords(JsonName.WORDS)
     }
 }
