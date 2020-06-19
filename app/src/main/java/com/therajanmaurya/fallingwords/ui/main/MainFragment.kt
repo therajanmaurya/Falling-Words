@@ -51,9 +51,7 @@ class MainFragment : Fragment(), Injectable {
             screenHeight = this.heightPixels.toFloat()
         }
 
-        if (!mainViewModel.isFetchedFromNetwork) {
-            lifecycleScope.launch { mainViewModel.fetchWords() }
-        }
+        lifecycleScope.launch { mainViewModel.fetchWords() }
 
         pbWord.visibility = View.VISIBLE
 
