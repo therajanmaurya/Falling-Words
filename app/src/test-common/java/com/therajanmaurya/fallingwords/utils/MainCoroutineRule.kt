@@ -16,7 +16,7 @@ import org.junit.runner.Description
  *
  */
 @ExperimentalCoroutinesApi
-class MainCoroutineRule(
+open class MainCoroutineRule(
     val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
 ) : TestWatcher() {
 

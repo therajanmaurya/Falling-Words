@@ -27,9 +27,9 @@ class MainFragment : Fragment(), Injectable {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private val mainViewModel: MainViewModel by viewModels { viewModelFactory }
-    private var screenHeight = 0f
-    private var valueAnimator: ValueAnimator? = null
+    val mainViewModel: MainViewModel by viewModels { viewModelFactory }
+    var screenHeight = 0f
+    var valueAnimator: ValueAnimator? = null
 
     companion object {
         const val DEFAULT_ANIMATION_DURATION = 8000L
