@@ -21,12 +21,23 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            storeFile file('../falling_words.keystore')
+            storePassword '44d0e3bc-df23-407d-80ac-ab35df09ecde'
+            keyAlias = 'FallingWords'
+            keyPassword '44d0e3bc-df23-407d-80ac-ab35df09ecde'
+        }
+    }
+
     buildTypes {
         debug {
             testCoverageEnabled !project.hasProperty('android.injected.invoked.from.ide')
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
