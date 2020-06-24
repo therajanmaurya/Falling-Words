@@ -21,6 +21,3 @@ data class Word(
     @SerializedName("answer")
     var answer: String = ""
 ) : Parcelable
-
-@Parcelize
-class Words : ArrayList<Word>(), Parcelable
